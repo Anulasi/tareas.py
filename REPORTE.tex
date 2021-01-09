@@ -1,0 +1,188 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{ifpdf,newtxtext,newtxmath} 
+\usepackage{array,graphicx,dcolumn,multirow,hevea,abstract,hanging,fancyhdr,float}
+% change next 3 lines each issue
+\newcommand{\jref}{}
+\newcommand{\jhead}{Centro de Investigaciones Cerebrales}
+\newcommand{\jdate}{January 2021}
+\topmargin=-.3in \oddsidemargin=.3in \evensidemargin=.3in \textheight=9in \textwidth=6in
+\pagestyle{fancy} 
+\fancyhead[L]{\protect\small \href{\jref}{\jhead}, \jdate}
+\fancyhead[R]{\protect\small SHORT TITLE} % replace with running head
+\fancypagestyle{firstpage}{%
+ \lhead{\protect\small \href{\jref}{\jhead}, \jdate}
+ \rhead{}
+}
+\usepackage[labelfont=sc,textfont=sf]{caption}
+\usepackage[hyperfootnotes=false,breaklinks=true]{hyperref} % was dvipdfmx
+% \usepackage[hyperfootnotes=false,breaklinks=true,linkbordercolor={1 1 1},citebordercolor={1 1 1}]{hyperref}
+% \usepackage{natbib} % must come afer hyperfootnotes, use 2nd version for bibtex
+% \setlength{\bibsep}{0pt}
+\urlstyle{rm}
+\usepackage[hyphenbreaks]{breakurl}
+% DO NOT USE ADDITIONAL PACKAGES unless you make sure they work with Hevea.
+% You may define new commands, but these may cause other troubles, so try to avoid it.
+
+% FOR BIBTEX USERS (Bibtex is not recommended, but we can use it):
+% \usepackage{natbib} % must come afer hypperref
+% in references: \bibliographystyle{apalike3} \setlength{\bibsep}{0pt} \bibliography{WHATEVER}
+% download http://journal.sjdm.org/apalike3.bst
+\usepackage{booktabs} % \toprule \midrule \bottomrule \cmidrule(lr){a-b}
+% define centered and ragged columns:
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash }p{#1}} % can use m{}
+\newcolumntype{C}[1]{>{\centering\arraybackslash }p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }p{#1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}} % d{3.2} for 3 places on l, 2 on r
+\newcommand{\mc}{\multicolumn}
+\setlength\tabcolsep{1mm}
+\setlength\columnsep{5mm}
+\setlength\abovecaptionskip{1ex}
+\setlength\belowcaptionskip{.5ex}
+\setlength\belowbottomsep{.3ex}
+\setlength\lightrulewidth{.04em}
+\renewcommand\arraystretch{1.2}
+\renewcommand{\topfraction}{1}
+\renewcommand{\textfraction}{0}
+\renewcommand{\floatpagefraction}{.9}
+% \renewcommand{\baselinestretch}{1.00} \large\normalsize % for fixing spaces
+\widowpenalty=1000
+\clubpenalty=1000
+\setlength{\parskip}{0ex}
+\let\tempone\itemize
+\let\temptwo\enditemize
+\let\tempthree\enumerate
+\let\tempfour\endenumerate
+\renewenvironment{itemize}{\tempone\setlength{\itemsep}{0pt}}{\temptwo}
+\renewenvironment{enumerate}{\tempthree\setlength{\itemsep}{0pt}}{\tempfour}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{page}{1} % start with first page
+
+\title{Reporte técnico Docking molecular de la proteína E del SARS-CoV)}
+
+\author{
+María Isabel Iñiguez Luna\thanks{CICE. Email: zs18024976@gmail.com}\;\,\thanks{}
+\and 
+  \thanks{} 
+\and
+  \footnotemark[2] % indicates same as 2nd thanks
+}
+
+\date{} % leave empty
+\begin{document} % goes here
+
+\begin{htmlonly}
+\href{\jref}{\jhead}, \jdate, pp.\
+\end{htmlonly}
+
+\maketitle
+\thispagestyle{firstpage}
+
+
+\section{Introdución}
+
+Los estudios encaminados a los coronavirus (CoV) causantes de resfriados comunes en los seres humanos, y recientemente responsables de síndromes respiratorios agudos (SARS) (Mandala et al., 2020) han cobrado interés primario en el campo de la investigación para ampliar rápidamente los conocimientos científicos sobre el nuevo virus COVID-19, responsable actual del brote de la enfermedad por coronavirus (OMS,2021) con la intención preservar la salud y prevenir la propagación del brote se ha aprovechado los alcances tecnológicos del poder computacional para el diseño de nuevas estrategias terapéuticas para la atención de la pandemia vigente causada por el coronavirus. Las principales proteínas estructurales del coronavirus son S (pico), E (envoltura) son proteínas integrales de la membrana.
+Un enfoque prometedor para la prevención, son el diseño de las vacunas vivas atenuadas, y algunas de estas vacunas son dirigidas a la proteína de la envoltura (E), que es una pequeña proteína de membrana que forma canales iónicos (Surya et al., 2018). Las proteínas de la envoltura (E) de CoV son pequeñas y comprenden entre 76 y 109 aminoácidos aproximadamente, en su estructura presentan un solo domino α-helicoidal transmembranal, y tienen un extremo N hidrófilo corto, y la cola hidrofóbica C-terminal, que presenta una organización pentamérica (Li et al., 2014).
+Los análisis in silico de acoplamiento molecular (AM), permite predecir la estructura más probable entre un ligante y el sitió de unión de una enzima específica, y así establecer una conjetura con base en la energía libre de unión de las conformaciones energéticamente más favorecidas o estables, es decir, aquellas que requieren del menor gasto energético y son más probables a ocurrir. El acoplamiento molecular consta de dos fases: la primera consiste en el docking o proceso de búsqueda de la conformación y orientación de moléculas, y la segunda etapa scoring que determinar el valor o puntaje de la interacción entre las dos partículas. Para la búsqueda de conformaciones estables se apoya en la aplicación de diversos algoritmos de búsqueda que están diseñados para predecir la actividad biológica de los compuestos seleccionados, mediante la evaluación de las interacciones entre los ligantes y los objetivos potenciales (Bartuzi et al., 2017). El acoplamiento molecular es frecuentemente empleado en el proceso de diseño de nuevos fármacos asistido por computadora.
+
+Descripción del problema a resolver
+
+Identificar la secuencia que codifica a la proteína de envoltura del coronavirus SARS-CoV-2, a partir de la secuencia completa del genoma y evaluar mediante el análisis de acoplamiento molecular si la amantadina es un ligante con potencial farmacológico para la proteína E. 
+
+
+
+\section{Metodología} 
+Para el análisis in silico se descargó la estructura cristalográfica de la proteína E depositada en la base de libre acceso Protein Data Bank (PDB) por Torres y colaboradores, (2017) con los códigos 5x29 (NMR) y 2mm4 (NMR) depositada por Li y colaboradores (2014).  Se procedió con la preparación del modelo la proteína a través del programa AutoDock 4.2.6. (GNU, General Public License) 25. En primer lugar, se eliminaron los modelos superpuestos en el archivo PDB descargado. 
+preparación del ligante amantadina se recupero el smiles (Simplified Molecular Input Line Entry Specification) de las bases de datos Drugbank y Zinc15. Se generaron los archivos con las estructuras 2D y 3D, la adición de hidrógenos faltantes a través del software Open Babel GUI versión 2.4.1 (GNU, General Public License).
+El acoplamiento molecular se realizó utilizando el programa AutoDock 4.2.6 (GNU, General Public License). La configuración de los parámetros se mantuvo en los dos acoplamientos moleculares. Se utilizó el algoritmo genético Lamarckiano para la búsqueda conformacional con 2,500,000 evaluaciones por conformación de cada ligante. En total por ligante, se aplicaron 9 ejecuciones independientes, para generar las 9 conformaciones más estables. El área determinada de para el acoplamiento molecular fue 50x50x50 Å, y las coordenadas que centran al sitio activo sobre en los ejes x, y, z fueron -0.316,-0.016,-0.173 respectivamente.
+
+
+\section{Resultados}
+
+En el modelo 2mm4 se obtuvieron valores energéticos entre -4.0 y -4.4 con la formación de enlaces en los aminoácidos LEU 19, PHE 20 y PHE 23 presentado un enlace pi-sigma con la proteína de envoltura E. En el Modelo de la proteína 5x29 con cinco cadenas (A-B) valores en la tabla 2. Las conformaciones 4 y 5 se posicionaron entre las cadenas A,D ,E del modelo proteico con cinco cadenas (5x29) y los aminoácidos PHE23, LEU 19 Y PHE20. Por otro lado, las conformaciones 1,2,3,6, 7 ,8 y 9 muestran interacciones con las cadenas A,B, E del modelo proteico 5x29 entre los aminoácidos Leu 31, 28; TYR 57 y PRO54.
+%Table 1
+\begin{table}[h]\centering
+\caption{Tabla 1. Resultados del acoplamiento molecular de la amantadina y la estructura de una cadena de la proteína E.}
+\begin{tabular}{L{.7in}C{.7in}C{.7in}C{.7in}}\toprule
+ & Fármaco & Id Zinc15 & K/cal/mol\\\midrule
+Amantadina   
+& ZINC00000096825 &  & -4.4 \\ &   &  & -4.4\\  &   &  & -4.4\\ &   &  & -.2\\ &   &  & -4.1\\ &   &  & -4.1\\ &   &  & -4.0\\ &   &  & -4.0\\ &   &  & -4.0\\
+ \\\bottomrule
+
+
+
+\end{tabular}
+\end{table}
+
+%Table 1
+\begin{table}[h]\centering
+\caption{Tabla 2. Resultados del acoplamiento molecular de la amantadina y la estrúctura pentamérica de la proteína E.}
+\begin{tabular}{L{.7in}C{.7in}C{.7in}C{.7in}}\toprule
+ & Fármaco & Id Zinc15 & K/cal/mol\\\midrule
+Amantadina   
+& ZINC00000096825 &  & -5.4 \\ &   &  & -5.4\\  &   &  & -5.3\\ &   &  & -5.3\\ &   &  & -5.3\\ &   &  & -5.2\\ &   &  & -5.2\\ &   &  & -5.1\\ &   &  & -5.1\\
+ \\\bottomrule
+ 
+ 
+
+\end{tabular}
+\end{table}
+
+\section{Conclusión}
+
+La herramienta de acoplamiento molecular nos permitió visualizar que el fármaco antiviral amantadina claramente muestra interacciones con aminoácidos presentes en las estructuras de la proteína E. Los valores energéticos obtenidos fueron muy cercanos con tan solo una 1 Kcal/mol de diferencia entre los valores medios recuperados entre la estructura de una cadena de la proteína E y la estructura pentamérica. Sin embargo, no es factible concluir que la amantadina es un buen agente farmacológico debido a que el análisis realizado se limitó a solo un fármaco antiviral.
+Tabla 1. Resultados de energía de unión de l amantadina y el estructura de una cadena de la proteína E.
+
+
+
+
+
+
+
+
+% FOR BIBTEX USERS INSTEAD OF REFERENCES SECTION
+%\bibliographystyle{apalike3}
+%\bibliography{bibliography.bib}
+% OR CAN ALSO INCLUDE THE BBL FILE AFTER THE NEXT LINE, INSTEAD OF THE LAST LINE
+\section*{Referencias}
+
+\begin{hangparas}{1em}{1}
+
+ Bartuzi, D., Kaczor, A., Targowska-Duda, K., and Matosiuk, D. (2017). Recent advances and applications of molecular docking to G protein-coupled receptors. Molecules, 22(2), 340.
+Li, Y., Surya, W., Claudine, S., Torres, J. (2014). Structure of a conserved Golgi complex-targeting signal in coronavirus envelope proteins. Journal of Biological Chemistry, 289(18), 12535-12549.
+Mandala, V. S., McKay, M. J., Shcherbakov, A. A., Dregni, A. J., Kolocouris, A., Hong, M. (2020). Structure and drug binding of the SARS-CoV-2 envelope protein transmembrane domain in lipid bilayers. Nature Structural & Molecular Biology, 27(12), 1202-1208.
+Surya, W., Li, Y.,  Torres, J. (2018). Structural model of the SARS coronavirus E channel in LMPG micelles. Biochimica et Biophysica Acta (BBA)-Biomembranes, 1860(6), 1309-1317.
+
+
+\vfill % use this for column breaks
+\break
+
+Grice, H. P. (1975).  Logic and conversation. In P. Cole \& J.
+L. Morgan, (Eds.), \textit{Speech Acts}, pp.\ 41--58. London: Academic
+Press. \url{http://dx.doi.org/3.14159--1x}.
+\end{hangparas}
+
+\bigskip
+\section*{Appendix}
+
+The asterisk means that these divisions are not numbered.
+
+\subsection*{How to write Mathematics}
+
+This section is completely redundant with the text. Do not do
+that. This is just an example.
+
+\LaTeX{} is great at typesetting mathematics. Let $X_1, X_2, \ldots, X_n$ be a sequence of independent and identically distributed random variables with $\text{E}[X_i] = \mu$ and $\text{Var}[X_i] = \sigma^2 < \infty$, and let
+\[S_n = \frac{X_1 + X_2 + \cdots + X_n}{n}
+      = \frac{1}{n}\sum_{i}^{n} X_i\]
+denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{n}(S_n - \mu)$ converge in distribution to a normal $\mathcal{N}(0, \sigma^2)$.
+
+
+\subsection*{How to create Sections and Subsections}
+
+Use section and subsections to organize your document. Simply use the section and subsection buttons in the toolbar to create them, and we'll handle all the formatting and numbering automatically.
+
+\end{document}
