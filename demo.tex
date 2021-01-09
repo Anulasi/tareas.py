@@ -1,0 +1,90 @@
+\documentclass[9pt]{beamer}
+% Created By Gouthaman KG
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Use roboto Font (recommended)
+\usepackage[sfdefault]{roboto}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Define where theme files are located. ('/styles')
+\usepackage{styles/fluxmacros}
+\usefolder{styles}
+% Use Flux theme v0.1 beta
+% Available style: asphalt, blue, red, green, gray 
+\usetheme[style=asphalt]{flux}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Extra packages for the demo:
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{ragged2e}
+\usepackage{schemabloc}
+\usepackage{hyperref}
+\usebackgroundtemplate{
+\includegraphics[width=\paperwidth,height=\paperheight]{assets/background.jpg}}%change this to your preferred background for the presentation.
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Informations
+\title{Acoplamiento molecular SARS-CoV proteína E}
+\subtitle{}
+
+\author{María Isabel Iñiguez Luna }
+\institute{Centro de Investigaciones Cerebrales}
+\titlegraphic{} %change this to your preferred logo or image(the image is located on the top right corner).
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\begin{document}
+
+% Generate title page
+\titlepage
+
+\begin{frame}
+
+ \frametitle{Introducción}
+ \tableofcontents
+\end{frame}
+
+\section{Acoplamiento molecular} %the content in the section will be displayed in the table of contents
+\begin{frame}{Docking}%the content in the frame will be displayed as the title of the page
+"Los análisis in silico de acoplamiento molecular (AM), permite predecir la estructura más probable entre un ligante y el sitió de unión de una enzima específica, y así establecer una conjetura con base en la energía libre de unión de las conformaciones energéticamente más favorecidas o estables, es decir, aquellas que requieren del menor gasto energético y son más probables a ocurrir.."
+    
+\end{frame}
+
+\section{SARS-CoV-2}
+\begin{frame}{Dianas terapeúticas}
+\begin{itemize}
+
+  \setlength\itemsep{1em}  %increase the space between items.
+  
+    \item Los estudios encaminados a los coronavirus (CoV),han cobrado interés primario en el campo de la investigación para ampliar rápidamente los conocimientos científicos sobre el nuevo virus COVID-19, responsable actual del brote de la enfermedad por coronavirus (OMS,2021) con la intención preservar la salud y prevenir la propagación del brote . 
+    
+    \item Las principales proteínas blanco en las investigaciones actuales, son la proteína S (pico), y E (envoltura) del coronavirus.
+\end{itemize}
+\end{frame}
+
+\section{Estrategias preventivas}
+\begin{frame}{Estrategias preventivas}
+\begin{itemize}
+
+  \setlength\itemsep{1em}  %increase the space between items.
+  
+    \item Un enfoque prometedor para la prevención, son el diseño de las vacunas vivas atenuadas, y algunas de estas vacunas son dirigidas a la proteína de la envoltura (E), que es una pequeña proteína de membrana que forma canales iónicos (Surya et al., 2018). 
+    \end{itemize}
+\end{frame}
+
+\section{Planteamiento del problema}
+\begin{frame}{Proyecto}
+   \begin{itemize}
+   \item Identificar la secuencia que codifica a la proteína de envoltura (E) del coronavirus SARS-CoV-2, a partir de la secuencia completa del genoma (NCBI) y evaluar mediante el análisis de acoplamiento molecular (Autodock) si la amantadina es un ligante con potencial farmacológico. 
+   
+   
+   \end{itemize}
+ 
+\end{frame}
+    
+
+\end{document}
